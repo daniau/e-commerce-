@@ -63,7 +63,7 @@ export default function Footer() {
 
       </div>
     </section>
-    <div className="bg-black flex items-center justify-center py-2 text-white px-2">
+    <div className="bg-black flex items-center justify-center py-2 text-gray-300 px-2">
       <Copyright className="mr-4"/>
       <p>Copyright Rimel 2022. All right reserved</p>
     </div>
