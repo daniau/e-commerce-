@@ -1,5 +1,5 @@
-export default function Button({tag,onClick}) {
+export default function Button({tag,onClick,className}) {
   return (
-    <button className="bg-[#DB4444] p-3 text-white font-medium rounded-md px-6 cursor-pointer" onClick={onClick}>{tag}</button>
+    <button className={`bg-[#DB4444] hover:bg-[#C33C3C] transition-all duration-300 p-2 text-white font-medium rounded px-6 cursor-pointer ${className}`} onClick={onClick}>{tag}</button>
   )
 }
