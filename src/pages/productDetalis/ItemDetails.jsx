@@ -5,17 +5,18 @@ import { useCart } from "../../context/CartContext"
 
 export default function ItemDetails({ item }) {
   const [count, setCount] = useState(0)
-  const{cart,addToCart,updateQuantity}=useCart()
+  const{addToCart}=useCart()
   function handlePlus() {
   setCount((prev)=>prev+1)
    
   }
-  function handleAddition(item){
+  function handleQuantity(item){
     if(count===0) return
+    addToCart(item,count)
 
-    if(cart.find((i)=>i.id===item.id)){
-      updateQuantity(item.id,count)
-    }else addToCart(item)
+    // if(cart.find((i)=>i.id===item.id)){
+    //   updateQuantity(item.id,count)
+    // }else addToCart(item,count)
 
   }
   function handleDes() {
@@ -66,7 +67,7 @@ export default function ItemDetails({ item }) {
         <span className="border-y border-gray-800 py-2 px-8">{count}</span>
         <button  className="hover:bg-[#DB4444]  hover:text-white  cursor-pointer border border-gray-800 p-2 rounded-r-[5px] transition-all duration-300  font-bold" onClick={handlePlus}>+</button>
         </div>
-        <Button tag={"Add to Cart"} onClick={()=>handleAddition(item)}/>
+        <Button tag={"Add to Cart"} onClick={()=>handleQuantity(item)}/>
       
           <Heart className="hover:underline text-[#DB4444] hover:text-white hover:bg-[#DB4444] hover:rounded-[50%] transition-all duration-300 cursor-pointer ml-8  text-xl md:text-2xl"/>
        

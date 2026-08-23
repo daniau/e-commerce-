@@ -1,39 +1,51 @@
 import { useState } from "react"
 import Button from "../../component/common/Button"
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function Login() {
-  const [personData,setPersonData]=useState({
-    email:"",
-    password:""
+  const [personData, setPersonData] = useState({
+    email: "",
+    password: ""
   })
-  function handleChange(e){
-    setPersonData({...personData,[e.target.name]:e.target.value})
+  const [errors, setErrors] = useState({})
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    setPersonData((prev) => ({ ...prev, [name]: value }))
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }))
+    }
   }
-  function handleSubmit(e){
-    e.preventDefault()
-  }
-  function validateForm(){
-    let newErrors={}
-    let valid=true
-    if(!personData.email.trim()){
-      newErrors.email="Email is required"
-      valid=false
-    }else if(!`\\+S\@\+S\.\+S`.test(personData.email)){
-      newErrors.email="unvalid Email"
-      valid=false
+
+  function validateForm() {
+    const newErrors = {}
+    let valid = true
+
+    if (!personData.email.trim()) {
+      newErrors.email = "Email is required"
+      valid = false
+    } else if (!EMAIL_REGEX.test(personData.email.trim())) {
+      newErrors.email = "Invalid email"
+      valid = false
     }
 
-    if(!personData.password.trim()){
-      newErrors.password="password is required"
-      valid=false
+    if (!personData.password.trim()) {
+      newErrors.password = "Password is required"
+      valid = false
+    } else if (personData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters"
+      valid = false
+    }
 
-    }
-    else if(personData.password<6){
-      newErrors.password="password must at least 6"
-      valid=false
-    }
     setErrors(newErrors)
     return valid
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (!validateForm()) return
+    // TODO: connect to auth API
   }
 
   return (
@@ -50,12 +62,35 @@ export default function Login() {
         <p className="text-[20px]">Enter your details below</p>
    
 
-      <form onSubmit={handleSubmit} className="flex flex-col  my-20 w-[80%] md:w-[50%] gap-8 ">
-      <input type="email" name="email" value={personData.email} onChange={handleChange} placeholder="Email or Phone Number"
+      <form name="login" onSubmit={handleSubmit} noValidate className="flex flex-col  my-20 w-[80%] md:w-[50%] gap-8 ">
+      <div className="flex flex-col gap-1">
+      <input
+      autoComplete="email"
+      id="login-email"
+      type="email"
+      name="email"
+      value={personData.email}
+      onChange={handleChange}
+      placeholder="Email or Phone Number"
+      aria-invalid={Boolean(errors.email)}
+      aria-describedby={errors.email ? "email-error" : undefined}
        className="border-b border-gray-400 focus:outline-none p-2 placeholder:text-[14px] md:placeholder:text-[18px]" />
-      <input type="password" value={personData.password} name="password" onChange={handleChange}  placeholder="Password"
+      {errors.email && <p id="email-error" className="text-[#DB4444] text-sm">{errors.email}</p>}
+      </div>
+      <div className="flex flex-col gap-1">
+      <input
+      id="password"
+      type="password"
+      value={personData.password}
+      name="password"
+      onChange={handleChange}
+      placeholder="Password"
+      aria-invalid={Boolean(errors.password)}
+      aria-describedby={errors.password ? "password-error" : undefined}
       className="focus:outline-none border-b border-gray-400 p-2 placeholder:text-[14px] md:placeholder:text-[18px]"
       />
+      {errors.password && <p id="password-error" className="text-[#DB4444] text-sm">{errors.password}</p>}
+      </div>
       <div className="flex justify-between items-center gap-4 ">
       <Button tag={"Login"}  type="submit"/>
       <button className="text-[#DB4444] bg-transparent flex items-center cursor-pointer">Forget Password ?</button>

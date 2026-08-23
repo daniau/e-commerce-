@@ -1,5 +1,4 @@
 import CounterDownTimer from "../../../component/CounterDownTimer";
-import ImageFrame from "../../../assets/images/frame.png"
 import { useState } from "react";
 
 export default function Hero() {
@@ -25,7 +24,7 @@ export default function Hero() {
         <button className="bg-[#00FF66] p-3 text-white font-medium rounded-md px-6 cursor-pointer">Buy Now !</button>
       </div>
       <div>
-        <img src={ImageFrame} width={600}  className=" transition-transform duration-1000 ease-in-out hover:scale-105"  />
+        <img src="/frame.webp" width={600} alt="Music experience" className=" transition-transform duration-1000 ease-in-out hover:scale-105"  />
       </div>
 
     </section>

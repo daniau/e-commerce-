@@ -1,41 +1,20 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import SectionHeader from "../../../component/common/SectionHeader"
 import ProductImage from "../../../component/common/Card/ProductImage"
 import ProductInfo from "../../../component/common/Card/ProductInfo"
 import Button from "../../../component/common/Button"
 import { Link } from 'react-router';
+import { useProduct } from "../../../context/productContext"
 
 export default function OurProduct() {
   const [isOpen,setIsOpen]=useState(false)
-  const [product,setProduct]=useState([])
-  const[status,setStatus]=useState({isLoading:true,error:null})
-  useEffect(()=>{
-    async function fetchData() {
-      try {
-       const response=await fetch("https://dummyjson.com/products")
-       console.log(response)
-       if(!response.ok) throw new Error("Failed to fetch products")
-       const data=await response.json()
-       setProduct(data.products)
-        
-      } catch (error) {
-        setStatus((prev)=>({...prev,error}))
-        
-      }finally{
-        setStatus((prev)=>( {...prev,isLoading:false}))
-      }
-      
-    }
-    fetchData()
-   
-
-    
-  },[])
+  const {products,status}=useProduct()
+ 
   function handleClick(){
     setIsOpen(!isOpen)
   }
 
-  const products=isOpen?product:product.slice(0,8)
+  const visibleProducts =isOpen?products:products?.slice(0,8)
  
   return (
     <section className="mt-30 mx-5 lg:mx-18   border-b border-b-gray-300">
@@ -45,7 +24,7 @@ export default function OurProduct() {
    {!status.isLoading&&!status.error&& <ul className={`mt-10 flex gap-3 lg:gap-8  items-center justify-start overflow-x-auto flex-wrap `}
     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >  
-      {products.map((item) => (
+      {visibleProducts .map((item) => (
         
        <li  key={item.id} className="w-[300px] h-[350px] shrink-0" >         
         <Link to={`/products/${item.id}`}>

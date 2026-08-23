@@ -1,34 +1,33 @@
+import { lazy, Suspense } from "react"
 import TopBar from "../../component/common/header/TopBar"
 import Header from "../../component/common/header/Header"
 import HeroSection from "./sections/heroSection/HeroSection"
-import FlashSaleSection from "./sections/FlashSaleSection"
-import BrowseCategories from "./sections/BrowseCategories"
-import BestSellingProducts from "./sections/BestSellingProducts"
-import Hero from "./sections/HeroSec"
-import OurProduct from "./sections/OurProduct"
-import NewArrival from "./sections/NewArrival"
-import OurServices from "./sections/OurServices"
-import Footer from "../../component/common/Footer"
+
+const FlashSaleSection = lazy(() => import("./sections/FlashSaleSection"))
+const BrowseCategories = lazy(() => import("./sections/BrowseCategories"))
+const BestSellingProducts = lazy(() => import("./sections/BestSellingProducts"))
+const Hero = lazy(() => import("./sections/HeroSec"))
+const OurProduct = lazy(() => import("./sections/OurProduct"))
+const NewArrival = lazy(() => import("./sections/NewArrival"))
+const OurServices = lazy(() => import("./sections/OurServices"))
+const Footer = lazy(() => import("../../component/common/Footer"))
 
 export default function HomePage() {
-  
   return (
-   <>
-   
-    <TopBar/>
-    <Header />
-    <HeroSection/>
-    <FlashSaleSection />
-    <BrowseCategories />
-    <BestSellingProducts/>
-    <Hero/>
-    <OurProduct/>
-    <NewArrival/>
-    <OurServices/>
-    <Footer/>
-
-   
-   </>
- 
+    <>
+      <TopBar />
+      <Header />
+      <HeroSection />
+      <Suspense fallback={<p className="text-center my-10">Loading...</p>}>
+        <FlashSaleSection />
+        <BrowseCategories />
+        <BestSellingProducts />
+        <Hero />
+        <OurProduct />
+        <NewArrival />
+        <OurServices />
+        <Footer />
+      </Suspense>
+    </>
   )
 }

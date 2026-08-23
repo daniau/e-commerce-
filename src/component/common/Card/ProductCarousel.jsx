@@ -2,28 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import ProductImage from "../Card/ProductImage";
 import ProductInfo from "./ProductInfo";
+import { useProduct } from "../../../context/productContext";
 
 export default function ProductCarousel({ currentIndex }) {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+ const{products,status}=useProduct()
 
-  useEffect(() => {
-    async function fetchItems() {
-      try {
-        const response = await fetch("https://dummyjson.com/products");
-        const data = await response.json();
-        setProducts(data.products);
-      } catch (err) {
-        console.error("Failed to fetch products:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchItems();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
+  if (status.isLoading) return <p>Loading...</p>;
 
   const visibleProducts = products.slice(currentIndex);
 

@@ -8,7 +8,7 @@ export default function ImageSection({ item }) {
 
       </div>
       <div className="bg-[#F5F5F5] w-fit h-full">
-        <img key={item.id} src={item.thumbnail} alt={item.title}  className="min-w-70 h-full " />
+        <img loading="lazy" key={item.id} src={item.thumbnail} alt={item.title}  className="min-w-70 h-full " />
       </div>
 
     </section>

@@ -12,7 +12,9 @@ export default function Footer() {
         <h3 className="font-semibold text-[16px]">Subscribe</h3>
         <p>Get 10% off your first order</p>
         <div className="flex  items-center rounded-[10px] w-fit border justify-around  py-0.5 p-2">
-        <input className='focus:outline-none w-fit p-1  placeholder:text-[16px]' type="email" name="" id="" placeholder="Enter your email" />
+        <input 
+         className='focus:outline-none w-fit p-1  placeholder:text-[16px]'   autoComplete="email"
+         type="email" name="email" id="email" placeholder="Enter your email" />
         <Send/>
         </div>
       </div>
@@ -48,9 +50,9 @@ export default function Footer() {
         <h2 className="font-bold text-[16px]">Download App</h2>
         <p className="text-gray-300">Save $3 with App New User Only</p>
       <div className="grid grid-rows-2 grid-cols-2 w-[150px] h-20 gap-2 mt-2">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.linkedin.com/in/sameh-dheir" alt="QR" className="object-contain w-full h-full row-span-2"/>
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store"  className="object-contain w-full h-full"/>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="object-contain w-full h-full" />
+        <img loading="lazy" src="/qr-code.svg" alt="QR" className="object-contain w-full h-full row-span-2"/>
+        <img loading="lazy" src="download-on-the-app-store.svg" alt="App Store"  className="object-contain w-full h-full"/>
+        <img loading="lazy" src="/Google_Play_Store_badge_EN.svg" alt="Google Play" className="object-contain w-full h-full" />
 
       </div>
       <div className="flex mt-4 ">

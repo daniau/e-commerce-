@@ -1,9 +1,9 @@
 import { Heart, Eye } from "lucide-react"
 import { useState } from "react"
 import { useCart } from "../../../context/CartContext"
-export default function ProductImage({ image, disCount ,disCountBgColor,product}) {
-  const {cart,addToCart}=useCart()
-  function handleClick(e){
+export default function ProductImage({ image, disCount, disCountBgColor, product }) {
+  const { cart, addToCart } = useCart()
+  function handleClick(e) {
     e.preventDefault()
     e.stopPropagation()
     addToCart(product)
@@ -12,11 +12,14 @@ export default function ProductImage({ image, disCount ,disCountBgColor,product}
     <div className="flex-col group  bg-[#F5F5F5]  w-[300px] h-fit  " >
       <div className="flex w-fit h-fit justify-between items-start gap-2  px-3 pb-2 pt-4 ">
         <div className={` w-10 h-6 rounded text-sm flex items-center justify-center text-white`}
-         style={{backgroundColor: disCountBgColor||`#DB4444 ` }}>{disCount}</div>
-        <img src={image} width={180} height={180} className="transition transform duration-700 ease-in-out hover:scale-112" />
+          style={{ backgroundColor: disCountBgColor || `#DB4444 ` }}>{disCount}</div>
+        <img src={image} loading="lazy" width={180} height={180} alt={product?.title || "Product"} className="transition transform duration-700 ease-in-out hover:scale-112" />
         <div className=" flex flex-col  ">
-          <button className=" cursor-pointer bg-[#F5F5F5] rounded-2xl mb-4"><Heart  /></button>
-          <button className=" cursor-pointer bg-[#F5F5F5] rounded-2xl"><Eye /></button>
+          <button aria-label="Add to wishlist"
+            className=" cursor-pointer bg-[#F5F5F5] rounded-2xl mb-4"><Heart /></button>
+          <button aria-label="View product details"
+
+            className=" cursor-pointer bg-[#F5F5F5] rounded-2xl"><Eye /></button>
 
         </div>
 

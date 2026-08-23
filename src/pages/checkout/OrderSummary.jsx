@@ -10,7 +10,7 @@ export default function OrderSummary() {
         {cart.map((item) => (
           <li key={item.id} className="flex justify-between items-center gap-1.5 w-full">
             <div className="flex items-center justify-between gap-1">
-              <img src={item.thumbnail} alt={item.title} className="md:max-w-25 h-[50%] max-w-20  " />
+              <img loading="lazy" src={item.thumbnail} alt={item.title} className="md:max-w-25 h-[50%] max-w-20  " />
               <p>{item.title} <strong>X {item.quantity}</strong></p>
             </div>
 

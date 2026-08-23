@@ -3,18 +3,18 @@ import NavigationPath from "../../component/common/NavigationPath";
 import { useCart } from "../../context/CartContext";
 import { X } from "lucide-react"
 import { Link } from "react-router";
-import Button from "../../component/common/Button";
+// import Button from "../../component/common/Button";
+import { toast } from "react-toastify";
 import CouponInput from "../../component/common/CouponInput"
 export default function CartSection() {
-  const { cart, updateQuantity, deleteItem } = useCart()
-  const total = cart.reduce((sum, item) => (item.price * item.quantity) + sum, 0)
+  const {total,itemsCount, cart,deleteItem, updateQuantity} = useCart()
   function handleQuantity(id, e) {
     updateQuantity(id, e.target.value)
   }
 
   return (
     <section className="mt-20 mx-2 lg:mx-18  ">
-      {(cart.length > 0) ?
+      {(itemsCount > 0) ?
 
         <>
           <NavigationPath title={"cart"} />
@@ -31,8 +31,8 @@ export default function CartSection() {
               return <li key={item.id}>
                 <div className="grid grid-cols-5 w-[85%] mt-2 gap-1 items-center group">
                   <div className="relative">
-                    <X onClick={() => deleteItem(item.id)} className={`group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 text-[#DB4444] hover:duration-500 cursor-pointer   w-4 md:w-8 `} />
-                    <img key={item.id} src={item.thumbnail} alt={item.title} className="md:max-w-30 h-[50%] sm:max-w-40 font-bold  " />
+                    <X onClick={() => deleteItem(item.id)} className={`opacity-100 md:group-hover:opacity-100 md:opacity-0 transition-all duration-300 absolute top-0 left-0 text-[#DB4444] hover:duration-500 cursor-pointer   w-4 md:w-8 `} />
+                    <img loading="lazy" key={item.id} src={item.thumbnail} alt={item.title} className="md:max-w-30 h-[50%] sm:max-w-40 font-bold  " />
 
                   </div>
 
@@ -58,7 +58,10 @@ export default function CartSection() {
                 Return To Shop
               </button>
             </Link>
-            <button className="bg-white text-black hover:bg-[#DB4444] border border-gray-400 rounded hover:text-white py-2 px-4 cursor-pointer transition-all duration-500">
+            <button onClick={() => toast.success(`Cart updated`)
+
+            }
+            className="bg-white text-black hover:bg-[#DB4444] border border-gray-400 rounded hover:text-white py-2 px-4 cursor-pointer transition-all duration-500">
               Update Cart
             </button>
 

@@ -5,19 +5,23 @@ import { useState } from "react"
 
 
 export default function TopBar() {
-  const [lang,setLang]=useState("English")
+  const [lang, setLang] = useState("English")
   // const [click,setClick]=useState(false)
   // function handleClick(){
   //   // setClick(!click)
   //   // console.log(click)
   // }
-  function handleLng(e){
+  function handleLng(e) {
     setLang(e.target.value)
   }
   return (
-    <header className= "bg-black text-white w-full h-[48px] text-left flex items-center justify-evenly text-[11px] md:text-[16px] lg:text-[18px] py-2 px-4 md:px-6  text-wrap h-fit">
+    <header className="bg-black text-white w-full h-[48px] text-left flex items-center justify-evenly text-[11px] md:text-[16px] lg:text-[18px] py-2 px-4 md:px-6  text-wrap h-fit">
       <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!  <span className="underline ">ShopNow</span></p>
-      <select className="bg-black focus:outline-none cursor-pointer border-none font-medium" value={lang} onChange={handleLng}>
+      <label htmlFor="language" className="sr-only">Language </label>
+
+      <select id="language"
+        name="language"
+        className="bg-black focus:outline-none cursor-pointer border-none font-medium" value={lang} onChange={handleLng}>
         <option value={"English"}>English</option>
         <option value={"Arabic"}>Arabic</option>
 
@@ -34,12 +38,12 @@ export default function TopBar() {
         
         </div>
       </div> */}
-      
-       
-      
-       
-     
-      
-      </header>
+
+
+
+
+
+
+    </header>
   )
 }

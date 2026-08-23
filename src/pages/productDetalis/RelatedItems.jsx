@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react"
 import SectionHeader from "../../component/common/SectionHeader"
 import ProductImage from "../../component/common/Card/ProductImage"
 import ProductInfo from "../../component/common/Card/ProductInfo"
 import { Link } from 'react-router';
+import { useProduct } from "../../context/productContext";
 export default function ReleatedItem({item}) {
-  const [products,setProduct]=useState([])
-  const [isLoading,setIsLoading]=useState(true)
-  useEffect(()=>{
-    fetch("https://dummyjson.com/products")
-    .then((data)=>{
-      return data.json()})
-    .then((item)=>{
-      setIsLoading(false)
-      return setProduct(item.products)
-    }).catch((error)=>{
-      alert(error)
-      setIsLoading(false)
-    })
-
-    
-  },[])
-  if(isLoading) return <p>Loading</p>
+ const{products,status}=useProduct()
+ console.log(products)
+  if(status.isLoading) return <p>Loading</p>
   
   const related=products.filter((i)=>((i.category===item.category)&&(i.id!==item.id)))
 
