@@ -13,7 +13,7 @@ export default function Header() {
   const { itemsCount } = useCart()
   return (
     <nav className="sticky top-0 z-50 bg-white flex justify-between items-center pb-4 pt-7 px-5 lg:px-18 text-[10px] md:text-[16px] lg:text-[16px] xl:text-xl border-b border-b-gray-300 gap-1.5 text-black relative">
-      <a className='text-black font-bold text-2xl lg:text-4xl cursor-pointer'>Exclusive</a>
+      <div className='text-black font-bold text-2xl lg:text-4xl cursor-pointer'><Link to={'/'}>Exclusive</Link></div>
       <ul className='md:flex justify-evenly items-center hidden '>
         <li className="hover:underline hover:text-[#DB4444] hover:duration-500  font-bold mr-2  lg:mr-4 xl:mr-12"><Link to={'/'}>Home</Link></li>
         <li className="hover:underline hover:text-[#DB4444] hover:duration-500 font-bold mr-2 lg:mr-4 xl:mr-12"><Link >Contact</Link></li>

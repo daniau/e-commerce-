@@ -2,11 +2,11 @@ import SectionHeader from "../../component/common/SectionHeader"
 import ProductImage from "../../component/common/Card/ProductImage"
 import ProductInfo from "../../component/common/Card/ProductInfo"
 import { Link } from 'react-router';
-import { useProduct } from "../../context/productContext";
+import { useProduct } from "../../hooks/useProduct";
+import ProductGridSkeleton from "../../component/skeleton/ProductGridSkeleton";
 export default function ReleatedItem({item}) {
  const{products,status}=useProduct()
- console.log(products)
-  if(status.isLoading) return <p>Loading</p>
+  if(status.isLoading) return <ProductGridSkeleton/>
   
   const related=products.filter((i)=>((i.category===item.category)&&(i.id!==item.id)))
 

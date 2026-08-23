@@ -1,8 +1,11 @@
-export default async function fetchProducts() {
-  const response=await fetch("https://dummyjson.com/products")
+export default async function fetchProducts(id) {
+  const url = id
+  ? `https://dummyjson.com/products/${id}`
+  : `https://dummyjson.com/products`;
+  const response=await fetch(url)
   if(!response.ok) throw new Error("Failed to fetch products")
   const data=await response.json()
-  return data.products
+  return data
 
 
   

@@ -9,13 +9,16 @@ export async function addItemsToCart(
   userId,products) {
   const response=await fetch(`https://dummyjson.com/carts/add`,{
     method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
     body:JSON.stringify({userId,products})
   })
   if(!response.ok) throw new Error("Failed to add to cart")
   return response.json()
 }
 
-export async function updateCartQuantity(products,merge=true) {
+export async function updateCartQuantity(cartId,products,merge=true) {
   const response=await fetch(`https://dummyjson.com/carts/${cartId}`,{
     method:"PUT",
     body:JSON.stringify({products,merge}),

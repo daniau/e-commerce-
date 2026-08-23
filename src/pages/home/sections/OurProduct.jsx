@@ -4,7 +4,8 @@ import ProductImage from "../../../component/common/Card/ProductImage"
 import ProductInfo from "../../../component/common/Card/ProductInfo"
 import Button from "../../../component/common/Button"
 import { Link } from 'react-router';
-import { useProduct } from "../../../context/productContext"
+import { useProduct } from "../../../hooks/useProduct"
+import ProductGridSkeleton from "../../../component/skeleton/ProductGridSkeleton"
 
 export default function OurProduct() {
   const [isOpen,setIsOpen]=useState(false)
@@ -19,7 +20,7 @@ export default function OurProduct() {
   return (
     <section className="mt-30 mx-5 lg:mx-18   border-b border-b-gray-300">
     <SectionHeader tag={"Our Products"} title={"Explore Our Products"}   opcity={'0'}/>
-    {status.isLoading&& <p className="text-center my-10">Loading...</p>}
+    {status.isLoading&& <ProductGridSkeleton/>}
     {status.error&& <p className="text-center text-red-500">{status.error.message}</p>}
    {!status.isLoading&&!status.error&& <ul className={`mt-10 flex gap-3 lg:gap-8  items-center justify-start overflow-x-auto flex-wrap `}
     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}

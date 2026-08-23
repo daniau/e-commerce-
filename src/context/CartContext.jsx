@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import{addItemsToCart,updateCartQuantity} from "../api/cart"
+import{addItemsToCart,updateCartQuantity,deleteCartItem} from "../api/cart"
 const cartContext=createContext()
 export default function CartProvider({children}){
   const [cart,setCart]=useState(()=>{
@@ -31,7 +31,7 @@ export default function CartProvider({children}){
     })
     toast.success(`${product.title} added to cart!`)
     try {
-      await addItemsToCart(1,product)
+      await addItemsToCart(1,[{id:product.id,quantity:product.quantity}])
       
     } catch (error) {
       console.error(`API sync failed:, ${error.message}`)
@@ -50,7 +50,7 @@ export default function CartProvider({children}){
     toast.success(`Quantity updated for ${cart.find((item)=> item.id===id)?.title}`)
 
     try {
-      await updateCartQuantity(product)
+      await updateCartQuantity(2,[{id:id, quantity:newQuantity}])
       
     } catch (error) {
       console.error(`API sync failed:, ${error.message}`)
@@ -60,17 +60,31 @@ export default function CartProvider({children}){
  
 
 
-  function deleteItem(id){
+ async function deleteItem(id){
     setCart((prev)=>{
        return prev.filter((item)=> item.id!==id)
 
     })
+    try {
+      await deleteCartItem(2)
+      
+    } catch (error) {
+      console.error(`API sync failed:, ${error.message}`)
+      
+    }
     
 
     
   }
-  function clearCart(){
+ async function clearCart(){
     setCart([])
+    try {
+      await clearCart(1)
+      
+    } catch (error) {
+      console.error(`API sync failed:, ${error.message}`)
+      
+    }
 
   }
   const total=cart.reduce((sum,item)=>item.quantity*item.price+sum,0)

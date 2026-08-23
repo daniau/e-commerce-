@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import ProductImage from "../Card/ProductImage";
 import ProductInfo from "./ProductInfo";
-import { useProduct } from "../../../context/productContext";
+import { useProduct } from "../../../hooks/useProduct";
+import ProductGridSkeleton from "../../skeleton/ProductGridSkeleton";
 
 export default function ProductCarousel({ currentIndex }) {
  const{products,status}=useProduct()
 
-  if (status.isLoading) return <p>Loading...</p>;
+  if (status.isLoading) return <ProductGridSkeleton count={8}/>;
 
   const visibleProducts = products.slice(currentIndex);
 
