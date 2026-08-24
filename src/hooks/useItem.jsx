@@ -26,8 +26,8 @@ export const useItem = (id) => {
   const relatedItems = useMemo(() => {
     if (itemStatus.isLoading || itemStatus.error || !item || status.isLoading || status.error) return []
 
-    const releated = (products?.filter((product) => (product?.category == item?.category) && (product.id !== item?.id)))
-    return releated
+    const releted = (products?.filter((product) => (product?.category == item?.category) && (product.id !== item?.id)))
+    return releted
   }, [item, products, itemStatus, status])
 
   return { item, relatedItems, itemStatus }
