@@ -8,7 +8,8 @@ import ProductGridSkeleton from "../../skeleton/ProductGridSkeleton";
 export default function ProductCarousel({ currentIndex }) {
  const{products,status}=useProduct()
 
-  if (status.isLoading) return <ProductGridSkeleton count={8}/>;
+  if (status.isLoading) return <ProductGridSkeleton />;
+  if (status.error) return <p className="text-center text-red-500">{status.error.message}</p>;
 
   const visibleProducts = products.slice(currentIndex);
 
@@ -17,6 +18,7 @@ export default function ProductCarousel({ currentIndex }) {
       className="mt-10 flex gap-3 lg:gap-8 items-center justify-start overflow-x-auto"
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
+      
       {visibleProducts.map((item) => (
         <li
          

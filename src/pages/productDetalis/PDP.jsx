@@ -4,10 +4,12 @@ import ItemDetails from "./ItemDetails"
 import ImageSection from "./ImageSection"
 import ReleatedItem from "./RelatedItems"
 import PDPSkeleton from "../../component/skeleton/PDPSkeleton";
-import { useProduct } from "../../hooks/useProduct";
+import { useItem } from "../../hooks/useItem";
+import ProductGridSkeleton from "../../component/skeleton/ProductGridSkeleton";
+
 export default function PDP() {
   const params = useParams();       
-  const{item,status}=useProduct(params.id)
+  const{item,itemStatus,relatedItems}=useItem(params.id)
   // const [product, setProduct] = useState(null);
 
   // useEffect(() => {
@@ -29,7 +31,10 @@ export default function PDP() {
 
   // }, [params.id]);
 
-  if (status.isLoading) return <PDPSkeleton/>;
+  if (itemStatus.isLoading) return <>
+  <PDPSkeleton/>
+  </>;
+  if(!item) return <PDPSkeleton/>
 
   return (
 <>
@@ -43,7 +48,7 @@ export default function PDP() {
      
 
     </section>
-    <ReleatedItem item={item}/>
+    <ReleatedItem item={relatedItems}/>
 </>
    
   );
