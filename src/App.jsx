@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router";
 
 import HomePage from "./pages/home/HomePage";
 import Login from "./pages/login/login";
+import ProductGridSkeleton from "./component/skeleton/ProductGridSkeleton"
+import PageLoader from "./component/common/PageLoader";
 
 const Cart = lazy(() => import("./pages/cart/Cart"));
 const CheckOut = lazy(() => import("./pages/checkout/CheckOut"));
@@ -13,7 +15,7 @@ const ProductDetalis = lazy(() =>
 function App() {
   
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<PageLoader/>}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<Cart />} />
