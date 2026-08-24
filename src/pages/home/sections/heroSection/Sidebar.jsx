@@ -31,7 +31,7 @@ export default function Sidebar() {
        `} >
 
       {navItems.map((item, index) => (
-        <div key={index} >
+        <div key={index} className="relative" >
           <div className="px-3 py-2 cursor-pointer flex items-center justify-between w-[250px] hover:bg-[#DB4444] hover:text-white"
             onClick={() => { item.hasDropDown && setActiveDropDown(activeDropDown === item.title ? "" : item.title) }}
           >
@@ -46,7 +46,7 @@ export default function Sidebar() {
             )}
           </div>
           {item.hasDropDown && activeDropDown === item.title && (
-            <div className="bg-white font-normal">
+      <div className="absolute top-full left-0 bg-white font-normal shadow-lg border border-gray-200 rounded z-20 w-full p-3">   
               {item.dropdownItems.map((item, index) => (
                 <div key={index} className=" text-center my-2">{item}</div>
               ))}

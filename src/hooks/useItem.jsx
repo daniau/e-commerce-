@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from "react"
 import fetchProducts from "../api/products"
 import { useProduct } from "./useProduct"
 
-export const useItem = (id ) => {
+export const useItem = (id) => {
   const [item, setItem] = useState(null)
   const [itemStatus, setItemStatus] = useState({ isLoading: true, error: null })
-  const{products,status}=useProduct()
+  const { products, status } = useProduct()
 
   useEffect(() => {
     let ignore = false
@@ -24,12 +24,11 @@ export const useItem = (id ) => {
     return () => ignore = true
   }, [id])
   const relatedItems = useMemo(() => {
-        if (itemStatus.isLoading||itemStatus.error||!item||status.isLoading||status.error) return []
+    if (itemStatus.isLoading || itemStatus.error || !item || status.isLoading || status.error) return []
 
-    const releated=(products?.filter((product) => (product?.category == item?.category) && (product.id !== item?.id)))
-    console.log(releated)
+    const releated = (products?.filter((product) => (product?.category == item?.category) && (product.id !== item?.id)))
     return releated
-  }, [item, products ,itemStatus, status])
+  }, [item, products, itemStatus, status])
 
-  return { item, relatedItems, itemStatus,products }
+  return { item, relatedItems, itemStatus }
 }

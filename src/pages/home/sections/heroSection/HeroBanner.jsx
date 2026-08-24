@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function HeroBanner() {
   return (
-    <div className="bg-black text-white flex justify-between items-center md:w-[70%] sm:text-lg  xl:text-5xl
+    <div className="bg-black text-white flex justify-between items-center md:w-[70%] sm:text-lg  xl:text-5xl 
     md:text-3xl md:mt-10 rounded-2xl   mr-5 lg:mr-20 py-4 px-5 md:py-8 md:px-10 w-[80%]  h-[230px] md:h-[350px] mt-4 shadow-lg shadow-gray-800/40 ">
       <div className="flex  flex-col items-start justify-between space-y-2  sm:space-y-3 md:space-y-5">
         <div className="flex  items-center">

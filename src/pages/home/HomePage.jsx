@@ -14,7 +14,7 @@ const Footer = lazy(() => import("../../component/common/Footer"))
 
 export default function HomePage() {
   return (
-    <>
+    <main className="max-w-[1600px] mx-auto">
       <TopBar />
       <Header />
       <HeroSection />
@@ -26,8 +26,9 @@ export default function HomePage() {
         <OurProduct />
         <NewArrival />
         <OurServices />
+        </Suspense>
         <Footer />
-      </Suspense>
-    </>
+    
+    </main>
   )
 }
