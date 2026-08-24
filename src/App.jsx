@@ -2,8 +2,7 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router";
 
 import HomePage from "./pages/home/HomePage";
-import Login from "./pages/login/login";
-import ProductGridSkeleton from "./component/skeleton/ProductGridSkeleton"
+import Login from "./pages/login/Login";
 import PageLoader from "./component/common/PageLoader";
 
 const Cart = lazy(() => import("./pages/cart/Cart"));
