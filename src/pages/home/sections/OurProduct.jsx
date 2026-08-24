@@ -22,7 +22,7 @@ export default function OurProduct() {
     <SectionHeader tag={"Our Products"} title={"Explore Our Products"}   opcity={'0'}/>
     {status.isLoading&& <ProductGridSkeleton count={8}/>}
     {status.error&& <p className="text-center text-red-500">{status.error.message}</p>}
-   {!status.isLoading&&!status.error&& <ul className={`mt-10 flex gap-3 lg:gap-8  items-center justify-center overflow-x-auto flex-wrap `}
+   {!status.isLoading&&!status.error&& <ul className={`mt-10 flex gap-3 lg:gap-8  items-center justify-start overflow-x-auto flex-wrap `}
     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >  
       {visibleProducts .map((item) => (

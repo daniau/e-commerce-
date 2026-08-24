@@ -23,11 +23,17 @@ export default function Sidebar() {
 
   }
 
-  return (<div className="flex">
+  return (<div className="flex relative">
+    {!isSmall && (
+  <div
+    className="fixed inset-0 bg-black/40 z-20 md:hidden"
+    onClick={() => setIsSmal(true)}
+  />
+)}
 
 
-    <div className={`bg-white text-black  md:flex md:flex-col pl-5 lg:pl-18 text-[16px] font-semibold pt-8 md:border-r md:border-r-gray-300 
-     ${isSmall ? "hidden" : "sm:w-full md:w-[280px] lg:w-[328px]"}
+    <div className={`bg-white text-black  md:flex md:flex-col pl-5 lg:pl-18 text-[16px] font-semibold pt-8 md:border-r md:border-r-gray-300 md:static 
+     ${isSmall ? "hidden" : "absolute top-0 left-0 z-30 shadow-xl sm:w-full md:w-[280px] lg:w-[328px]"}
        `} >
 
       {navItems.map((item, index) => (
@@ -58,7 +64,7 @@ export default function Sidebar() {
       ))}
 
     </div>
-    <button className={`md:hidden p-3  bg-[#DB4444] text-white w-[35px] h-[250px] flex items-center ${!isSmall?"h-[390px]":"h-[250px]"} `}
+    <button className={` md:hidden p-3  bg-[#DB4444] text-white w-[35px] h-[250px] flex items-center `}
       onClick={handleScreen}
     >
       {isSmall ? <ChevronRight size={35} strokeWidth={3.5} /> : <ChevronLeft size={40} strokeWidth={3.5} />}
