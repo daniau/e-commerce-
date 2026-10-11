@@ -65,9 +65,4 @@ npm run preview   # preview the production build
 npm run lint      # run ESLint
 ```
 
-## Roadmap
 
-- Connect the login form to a real authentication API.
-- Make the billing form controlled and create real orders on "Place Order".
-- Implement coupons, search, wishlist, and color/size selection.
-- Add screenshots.
